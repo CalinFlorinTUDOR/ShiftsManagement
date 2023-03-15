@@ -1,0 +1,2 @@
+# ShiftsManagement
+Angular to Firebase
