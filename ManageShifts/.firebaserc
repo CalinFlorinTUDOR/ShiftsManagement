@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shiftsmanagement-f2956": {
+      "hosting": {
+        "ManageShifts": [
+          "shiftsmanagement-f2956"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shiftsmanagement-f2956"
+  }
+}

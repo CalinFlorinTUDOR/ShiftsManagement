@@ -1,0 +1,21 @@
+.admin-area-btn {
+  margin: 15px 10px 10px 50px;
+}
+
+.admin-auth-btn,
+.admin-login-btn {
+  margin-left: 5px;
+}
+
+.side-nav {
+  overflow: hidden;
+}
+
+.icons {
+  padding: 10px;
+  font-size: 25px;
+}
+
+.nav-caption {
+  font-size: 18px;
+}
