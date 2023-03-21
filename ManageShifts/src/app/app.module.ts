@@ -12,6 +12,9 @@ import { SideNavComponent } from './components/admin-mode/side-nav/side-nav.comp
 import { HeaderComponent } from './components/workers-mode/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { WorkersRegisterComponent } from './components/workers-mode/workers-register/workers-register.component';
+import { WorkersLoginComponent } from './components/workers-mode/workers-login/workers-login.component';
+import { WorkersHomeComponent } from './components/workers-mode/workers-home/workers-home.component';
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import { MaterialModule } from './material/material.module';
     AppComponent,
     SideNavComponent,
     HeaderComponent,
+    WorkersRegisterComponent,
+    WorkersLoginComponent,
+    WorkersHomeComponent,
   ],
   imports: [
     BrowserModule,

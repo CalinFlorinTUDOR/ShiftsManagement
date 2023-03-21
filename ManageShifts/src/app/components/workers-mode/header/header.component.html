@@ -1,4 +1,4 @@
-<mat-toolbar color="warn" class="navbar">
+<mat-toolbar color="primary" class="navbar">
   <div>
     <button mat-icon-button (click)="OnToggle()">
       <mat-icon>menu</mat-icon>
@@ -6,9 +6,9 @@
   </div>
 
 <div class="navbar-header">
-    <ul style="display: flex; flex-direction: row; gap: 20px;" class="navigation-items">
-      <a style="text-decoration: none; color: white" routerLink="/register">Register |</a>
-      <a style="text-decoration: none; color: white" routerLink="/login">Login</a>
+    <ul class="navigation-items">
+      <mat-icon class="icons">fingerprint</mat-icon><a routerLink="/workers-register">Register</a>
+      <mat-icon class="icons">login</mat-icon><a routerLink="/workers-login">Login</a>
     </ul>
   </div>
 </mat-toolbar>

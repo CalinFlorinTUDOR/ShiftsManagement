@@ -1,0 +1,30 @@
+.register-container {
+  position: absolute;
+  background-color: #0f0f10;
+  border-radius: 7px;
+  margin-top: 1.2rem;
+  margin-left: 42rem;
+  z-index: 1;
+  width: 450px;
+  height: 795px;
+  top: 50px;
+}
+
+/* .workers-register-form {
+  min-width: 20px;
+  max-width: 400px;
+  width: 100%;
+  position: absolute;
+  margin-left: 42rem;
+  margin-top: -50rem;
+  z-index: 1;
+} */
+
+.input-container {
+  margin-top: 3px;
+  margin-left: 20px;
+  padding: 11px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+}
