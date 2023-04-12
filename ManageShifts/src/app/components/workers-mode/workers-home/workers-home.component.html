@@ -1,0 +1,14 @@
+
+<mat-toolbar color="primary" class="navbar">
+<div class="navbar-header">
+    <ul class="navigation-items">
+      <mat-icon class="icons">filter_tilt_shift_outlined</mat-icon><a routerLink="shifts">Shifts</a>
+      <mat-icon class="icons">filter_tilt_shift_rounded</mat-icon><a routerLink="add-shifts">Add Shifts</a>
+      <mat-icon class="icons">edit_note</mat-icon><a routerLink="edit-profile">Edit Profile</a>
+      <mat-icon class="icons">face</mat-icon>Hello<input type="text" class="greetings-user" [(ngModel)]="helloWorker">
+      <mat-icon class="icons">logout</mat-icon><a href="workers-login">Log Out</a>
+    </ul>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

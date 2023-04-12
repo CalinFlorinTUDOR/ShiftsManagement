@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.mat-elevation-z2 {
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.mat-white {
+  background-color: white;
+  color: black;
+}
+
+.mat-light-theme {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-light-theme .mat-primary {
+  background-color: white;
+  color: black;
+}
+
+.shiftsContainer {
+  margin-top: 50px;
+  margin-left: 250px;
+  color: white;
+}
+
+.btnShifts {
+  margin-left: 250px;
+}

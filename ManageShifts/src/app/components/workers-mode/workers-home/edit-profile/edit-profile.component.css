@@ -1,0 +1,23 @@
+.editProfile-container {
+  background-color: #0f0f10;
+  border-radius: 7px;
+  margin-top: 0.5rem;
+  margin-left: 42rem;
+  width: 450px;
+  height: 830px;
+  top: 50px;
+}
+
+.input-container {
+  margin-top: 3px;
+  margin-left: 20px;
+  padding: 11px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+}
+
+.update-btn {
+  margin-left: 30px;
+  width: 380px;
+}

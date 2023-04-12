@@ -1,0 +1,108 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-header">
+    <ul class="navigation-items">
+      <mat-icon class="icons">fingerprint</mat-icon><a routerLink="/workers-register">Register</a>
+      <mat-icon class="icons">login</mat-icon><a routerLink="/workers-login">Login</a>
+    </ul>
+  </div>
+</mat-toolbar>
+
+<div class="register-container">
+  <form [formGroup]="setForm" (ngSubmit)="onSubmit()" class="workers-register-form">
+    <div class="fields">
+    <mat-form-field class="input-container">
+      <mat-label>Username</mat-label>
+      <input type="text" matInput formControlName="username" placeholder="enter your username">
+      <mat-error *ngIf="username.errors?.['required'] && (username.touched || username.dirty)">Username is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="username.errors?.['minlength'] && (username.touched || username.dirty)">
+      Username is too short, at least 2 characters.Must contain letters,numbers and a special character!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput formControlName="fname" placeholder="enter your firstname ">
+    <mat-error *ngIf="fname.errors?.['required'] && (fname.touched || fname.dirty)">First name is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="fname.errors?.['minlength'] && (fname.touched || fname.dirty)">
+      First name is too short. Must contain at least two characters
+    </mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput formControlName="lname" placeholder="enter your last name">
+    <mat-error *ngIf="lname.errors?.['required'] && (lname.touched || lname.dirty)">Last name is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="lname.errors?.['minlength'] && (lname.touched || lname.dirty)">
+      Last name is too short.Must contain at least 2 characters.
+    </mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="enter email address">
+    <mat-error *ngIf="email.errors?.['required'] && (email.touched || email.dirty)">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="email.errors?.['email'] && (email.touched || email.dirty)">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password" [(ngModel)]="pass1" placeholder="enter your password">
+    <mat-error *ngIf="password.errors?.['required'] && password.touched">Password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="password.errors?.['minlength'] && (password.touched || password.dirty)">
+      Password is too short, at least 6 characters long .
+    </mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>Repeat Password</mat-label>
+    <input type="password" matInput formControlName="password2nd" [(ngModel)]="pass2" placeholder="repeat password">
+    <mat-error *ngIf="password2nd.errors?.['required'] && password2nd.touched">Repeat password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="password2nd.errors?.['required'] && (password2nd.touched || password2nd.dirty)">
+      Repeat password is invalid. 
+    </mat-error>
+    <mat-error *ngIf="!matchPassword() && (password.touched !== password2nd.touched)">Passwords do not match
+    </mat-error>
+  </mat-form-field>
+  </div>
+
+  <div class="fields">
+  <mat-form-field class="input-container">
+    <mat-label>Age</mat-label>
+    <input type="age" matInput formControlName="age" placeholder="enter your age">
+    <mat-error *ngIf="age.errors?.['required'] && age.touched">Age is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="age.errors?.['min'] && (age.touched || age.dirty)">
+      Maximum allowed age between 18 and 130 years old
+    </mat-error>
+    <mat-error *ngIf="!age.errors?.['min'] && (age.touched || age.dirty)">Maximum allowed age between 18 and 130 years old
+    </mat-error>
+  </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" class="register-btn" (click)="onSubmit()" [disabled]="!username.valid || !fname.valid || !lname.valid || !email.valid || !pass1 || !pass2 || !age.valid" routerLink="/workers-login">Register</button>
+  <p class="paragraph">Have an account? <a routerLink="/workers-login"> Login</a></p>
+  <br>
+  <p class="message">Clicking the button you are agree with T&C, TOS and Private Policy</p>
+  </form>
+</div>
+
+
+

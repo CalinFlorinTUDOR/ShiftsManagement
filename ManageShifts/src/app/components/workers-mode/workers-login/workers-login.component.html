@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="navbar-header">
+    <ul class="navigation-items">
+      <mat-icon class="icons">fingerprint</mat-icon><a routerLink="/workers-register">Register</a>
+      <mat-icon class="icons">login</mat-icon><a routerLink="/workers-login">Login</a>
+    </ul>
+  </div>
+</mat-toolbar>
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="workers-login-form">
+    <div class="fields">
+      <mat-form-field class="input-container">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="enter email address">
+        <mat-error *ngIf="loginForm.controls['email'].errors?.['required'] && (['email.touched'] || ['email.dirty'])">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls['email'].errors?.['email'] && (['email.touched'] || ['email.dirty'])">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      </div>
+
+  <div class="fields">
+    <mat-form-field class="input-container">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" placeholder="enter your password">
+      <mat-error *ngIf="loginForm.controls['password'].errors?.['required'] && ['password.touched']">Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls['password'].errors?.['minlength'] && (['password.touched'] || ['password.dirty'])">
+        Password is too short, at least 6 characters long .
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" class="login-btn" (click)="loginUser()" [disabled]="!loginForm.valid" routerLink="/workers-home">Login</button>
+    <p class="paragraph">Don't have account? <a routerLink="/workers-register"> Register</a></p>
+    <a class="forgoten" routerLink="/forgot-password">Forgot Password</a>
+  </form>
+</div>
+
+
+
+
