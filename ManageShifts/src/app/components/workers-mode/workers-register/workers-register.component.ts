@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-workers-register',
@@ -8,8 +12,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   styleUrls: ['./workers-register.component.css']
 })
 export class WorkersRegisterComponent implements OnInit {
-
-  
   setForm = new FormGroup ({
     username: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,17 +24,22 @@ export class WorkersRegisterComponent implements OnInit {
   pass1 = '';
   pass2 = '';
   errorMessage = '';
+  router: any;
+  authService: any;
+  firebaseErrorMessage: any;
 
-  constructor(private fb: FormBuilder,
-    private firebaseAuth: AngularFireAuth ) {
+  constructor(private fb: FormBuilder, private firebaseAuth: AngularFireAuth, private route : Router, private data : DataService, private af :AuthService) {
 
-    
+    this.firebaseErrorMessage = '';
   }
-  async setUser(user:any):Promise<any> {
+
+
+  async setUser(email, password):Promise<any> {
     try {
-      const res = await this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password);
+      const res = await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
       let lowerEmail;
       res.user.sendEmailVerification();
+      this.verifyEmail();
     } catch (error) {
       console.log('Signup Error:', error);
       if (error.code) {
@@ -41,7 +48,17 @@ export class WorkersRegisterComponent implements OnInit {
       return null;
     }
   }
-  ngOnInit() {}
+  
+  verifyEmail() {
+    this.firebaseAuth.currentUser.then((user) => user?.sendEmailVerification()).then(() => {
+      alert('User registered successfully ! We send you a link for your email verification !')
+    })
+    this.router.navigate(['/workers-login'])
+  }
+  ngOnInit() {
+
+    
+  }
 
   
 
@@ -50,26 +67,70 @@ export class WorkersRegisterComponent implements OnInit {
   }
   
   onSubmit() {
+
+    this.setUser(this.setForm.value.email, this.setForm.value.password)
+
     if (this.matchPassword()) {
-      this.addMultipleUsers(this.setForm.value);
+      return;
     } else {
       this.errorMessage = 'Passwords do not match';
     }
   }
 
-  addMultipleUsers(user: any) {
-    if (this.setForm.valid && this.matchPassword()) {
-      const key = 'Users';
-      let users = JSON.parse(localStorage.getItem(key) || '[]');
-      const existingUser = users.find((u: {username: string}) => u.username === user.username);
-      if (existingUser) {
-        this.setForm.controls.username.setErrors({alreadyExist: true});
-        return;
+  mustMatch(password: any, confirmPassword: any) {
+        return (FormGroup: FormGroup) => {
+          const passwordControl = FormGroup.controls[password];
+          const confirmPasswordControls = FormGroup.controls[confirmPassword];
+    
+          if (
+            confirmPasswordControls.errors &&
+            !confirmPasswordControls.errors['mustMatch']
+          ) {
+            return;
+          }
+    
+          if (passwordControl.value !== confirmPasswordControls.value) {
+            confirmPasswordControls.setErrors({ mustMatch: true });
+          } else {
+            confirmPasswordControls.setErrors(null);
+          }
+        };
       }
-      users = [user, ...users];
-      localStorage.setItem(key, JSON.stringify(users));
-    }
-  }
+    
+
+  signup() {
+        if (this.setForm.invalid) return;
+        this.authService
+          .signupUser(this.setForm.value)
+          .then((result) => {
+            if (result == null) {
+              this.authService.getCurentUser().then((result) => {
+                this.authService.changeUser(result);
+                this.data.insert(
+                  result,
+                  'users',
+                  this.setForm.value.username,
+                  this.setForm.value.email,
+                  false,
+                  this.setForm.value.password,
+                  this.setForm.value.password2nd,
+                  this.setForm.value.fname,
+                  this.setForm.value.lname,
+                  this.setForm.value.age,
+                  true,
+                  0
+                  );
+              });
+              this.router.navigate(['/workers-login']);
+            } else if (result.isValid == false) {
+              this.firebaseErrorMessage = result.messaege;
+            }
+          })
+          .catch(() => {});
+      }
+
+      
+      
 
   get username(): FormControl {
     return this.setForm.get('username') as FormControl;

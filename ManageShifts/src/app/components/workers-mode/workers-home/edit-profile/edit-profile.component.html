@@ -1,14 +1,5 @@
-<mat-toolbar color="primary" class="navbar">
-  <div class="navbar-header">
-    <ul class="navigation-items">
-      <mat-icon class="icons">fingerprint</mat-icon><a routerLink="/workers-register">Register</a>
-      <mat-icon class="icons">login</mat-icon><a routerLink="/workers-login">Login</a>
-    </ul>
-  </div>
-</mat-toolbar>
-
-<div class="register-container">
-  <form [formGroup]="setForm" (ngSubmit)="onSubmit()" class="workers-register-form">
+<div class="editProfile-container">
+  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
     <div class="fields">
     <mat-form-field class="input-container">
       <mat-label>Username</mat-label>
@@ -97,12 +88,8 @@
     </mat-error>
   </mat-form-field>
   </div>
-  <button mat-raised-button color="primary" class="register-btn" (click)="onSubmit()" [disabled]="!username.valid || !fname.valid || !lname.valid || !email.valid || !pass1 || !pass2 || !age.valid" routerLink="/workers-login">Register</button>
-  <p class="paragraph">Have an account? <a routerLink="/workers-login"> Login</a></p>
-  <br>
-  <p class="message">Clicking the button you are agree with T&C, TOS and Private Policy</p>
+  <button mat-raised-button color="primary" class="update-btn" (click)="onSubmit()" [disabled]="!username.valid || !fname.valid || !lname.valid || !email.valid || !pass1 || !pass2 || !age.valid" routerLink="/workers-login">Update Profile</button>
+  
   </form>
 </div>
-
-
 

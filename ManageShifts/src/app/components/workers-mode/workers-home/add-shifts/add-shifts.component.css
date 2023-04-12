@@ -1,0 +1,26 @@
+.add-shifts-card {
+  background-color: black;
+  margin-left: 50px;
+  width: 300px;
+}
+
+.fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-outline-success {
+  margin-left: 30px;
+  width: 210px;
+}
+
+.add-lists-card {
+  background-color: black;
+  color: white;
+  margin-top: 40px;
+}
+
+.table-hover {
+  color: white;
+}

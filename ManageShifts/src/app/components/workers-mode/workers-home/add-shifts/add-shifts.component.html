@@ -1,0 +1,98 @@
+<div class="container-fluid">
+
+  <div class="row">
+      <div class="col-md-4 mt-5">
+          <div class="add-shifts-card border-0 shadow p-3">
+                  <div class="fields">
+                    <mat-form-field>
+                      <mat-label>Shift Name</mat-label>
+                      <input matInput placeholder="shift name" name="shift name" [(ngModel)]="shiftName">
+                  </mat-form-field>
+          </div>
+          <div class="fields">
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <input type="date" matInput placeholder="Date" name="Date" [(ngModel)]="date">
+            </mat-form-field>
+          </div>        
+          <div class="fields">
+            <mat-form-field appearance="fill">
+              <mat-label>Start Time</mat-label>
+              <input type="time" matInput name="week" min="09:00" max="18:00" name="start_time" [(ngModel)]="startTime"/>
+            </mat-form-field>
+          </div>
+        <div class="fields">
+            <mat-form-field appearance="fill">
+              <mat-label>End Time</mat-label>
+              <input type="time" matInput name="week" min="09:00" max="18:00" name="end_time" [(ngModel)]="endTime"/>
+            </mat-form-field>
+          </div>
+        <div class="fields">
+            <mat-form-field>
+              <mat-label>Hourly Wage</mat-label>
+              <input matInput placeholder="hourly wage" name="hourlyWage" [(ngModel)]="wage">
+            </mat-form-field>
+        </div>
+        <div class="fields">
+          <mat-form-field appearance="fill">
+            <mat-label>Work Place</mat-label>
+            <select matNativeControl required name="workPlace" [(ngModel)]="shiftPlace">
+              <option value="pr_dptm">PR</option>
+              <option value="hr_dptm">HR</option>
+              <option value="it_dptm">IT</option>
+              <option value="prod_dptm">Production</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="fields">
+          <mat-form-field>
+            <mat-label>Comments</mat-label>
+            <textarea matInput placeholder="message" maxlength="100" #message [(ngModel)]="comment"></textarea>
+          </mat-form-field>
+        </div>
+                  <button type="button" class="btn btn-outline-success" (click)="addShift()">Add Shifts</button>
+          </div>
+      </div>
+      <div class="col-md-8 mt-2">
+          <div class="add-lists-card p-3 shadow">
+              <div class="card-body">
+                  <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Worker Name</th>
+                          <th scope="col">Shift Name </th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Start Name</th>
+                          <th scope="col">Hourly Wage</th>
+                          <th scope="col">Work Place</th>
+                          <th scope="col">Total Earnings</th>
+                          <th scope="col">Comments</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let shift of shiftsList">
+                          <ng-container>
+                        <tr class="add-shifts-table">
+                          <td>{{shift.last_name + "," + shift.first_name}}</td>
+                          <td>{{ shift.date }}</td>
+                          <td>{{ shift.start_time }}</td>
+                          <td>{{ shift.end_time }}</td>
+                          <td>{{ shift.hourly_wage }}</td>
+                          <td>{{ shift.work_place }}</td>
+                          <td>{{ shift.total_earnings }}$</td>
+                          <td>{{ shift.comments }}</td>
+                          <td>
+                              <button class="btn btn-outline-warm" (click)="editShift(shift)">Edit</button>
+                          </td>
+                        </tr>
+                          </ng-container>
+                        </ng-container>
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

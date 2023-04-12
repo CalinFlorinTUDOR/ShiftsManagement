@@ -1,0 +1,48 @@
+
+
+<form [formGroup]="shiftForm">
+    <div formArrayName="shifts">
+      <div *ngFor="let shift of shifts.controls; let i = index" [formGroupName]="i">
+    <div class="shiftsContainer">
+        <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput placeholder="Date"  formControlName="date">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Beginning Time</mat-label>
+            <input matInput placeholder="Beginning Time" formControlName="beginning_time">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>End Time</mat-label>
+            <input matInput placeholder="End Time" formControlName="end_time">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Price per Hour</mat-label>
+            <input matInput placeholder="Price/Hour"  formControlName="price_hour">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Shift Place</mat-label>
+            <input matInput placeholder="Shift Place" formControlName="shift_place">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Total profit per shift</mat-label>
+            <input matInput placeholder="Total profit/shift" formControlName="total_profit_shift">
+        </mat-form-field>
+        <button mat-raised-button color="warn" (click)="deleteShift(i)">Delete</button>
+    </div>
+
+    </div>
+
+    </div>
+
+    <button mat-raised-button color="primary" class="btnShifts"  (click)="Shift()">Shifts</button>
+
+</form>
+
+
+
