@@ -12,8 +12,6 @@ export class ForgotPasswordComponent implements OnInit {
   userRecover: FormGroup;
   email: any;
   
-
-
   constructor(private fb: FormBuilder, private afAuth: AngularFireAuth, private router: Router,) { 
     
     this.userRecover = this.fb.group({

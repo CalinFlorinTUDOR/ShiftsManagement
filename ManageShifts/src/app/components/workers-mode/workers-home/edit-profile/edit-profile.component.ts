@@ -29,7 +29,7 @@ export class EditProfileComponent implements OnInit{
   pass2 = '';
   errorMessage = '';
   router: any;
-userInfoEdit: FormGroup<any>;
+  userInfoEdit: FormGroup<any>;
 
   constructor(private fb: FormBuilder, private firebaseAuth: AngularFireAuth, private auth: AuthService, private data: DataService, private firestore: AngularFirestore ) { }
 
@@ -118,5 +118,6 @@ userInfoEdit: FormGroup<any>;
   get age(): FormControl {
     return this.editProfileForm.get('age') as FormControl;
   }
+  
 }
 
