@@ -1,5 +1,3 @@
-
-
 <form [formGroup]="shiftForm">
     <div formArrayName="shifts">
       <div *ngFor="let shift of shifts.controls; let i = index" [formGroupName]="i">

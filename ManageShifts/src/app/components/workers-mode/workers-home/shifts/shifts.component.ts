@@ -32,6 +32,7 @@ export class ShiftsComponent implements OnInit {
       
 
     })
+    
     this.shifts.push(shift)
     
   }

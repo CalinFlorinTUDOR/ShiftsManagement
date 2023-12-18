@@ -14,7 +14,7 @@ import 'firebase/firestore';
 export class AddShiftsComponent implements OnInit, AfterContentInit{
 
   userId: string;
-shiftName: any;
+  shiftName: any;
   constructor(private data: DataService, private auth: AuthService, private firestore: AngularFirestore) {}
   
   shiftsList: EShifts[] = [];
